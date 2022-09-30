@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>EasyStock</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="module" charset="ISO-8859-1" src="./index.js"></script>
+        <script src="https://kit.fontawesome.com/8b1a21b909.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+        <link rel="stylesheet" href="styles.css"> 
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    </head>
+    <body>
+        <div id="loading"></div>
+        <nav class="stock-navbar">
+            <ul class="stock-navbar-nav">
+                <li class="stock-logo">
+                    <a href="#" class="stock-nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M394.1 212.8c-20.04 27.67-28.07 60.15-31.18 93.95c-3.748 41.34-8.785 82.46-17.89 122.8l-6.75 29.64c-2.68 12.14-13.29 20.78-25.39 20.78c-12 0-22.39-8.311-25.29-20.23l-29.57-121.2C254.1 322.6 240.1 311.4 224 311.4c-16.18 0-30.21 11.26-34.07 27.23l-29.57 121.2c-2.893 11.92-13.39 20.23-25.29 20.23c-12.21 0-22.71-8.639-25.5-20.78l-6.643-29.64c-9.105-40.36-14.14-81.48-17.1-122.8C81.93 272.1 73.9 240.5 53.86 212.8c-18.75-25.92-27.11-60.15-18.43-96.57c9.428-39.59 40.39-71.75 78.85-82.03c20.14-5.25 39.54-.4375 57.32 9.077l86.14 56.54c6.643 4.375 15.11 1.86 18.96-4.264c4.07-6.454 2.25-15.09-4.18-19.36l-24.21-15.86c3-1.531 6.215-2.735 9-4.813c22.39-16.84 48.75-28.65 76.39-21.33c38.46 10.28 69.43 42.43 78.85 82.03C421.2 152.7 412.9 187 394.1 212.8z"/></svg>
+                        <span class="stock-logo-text">EasyStock</span>
+                    </a>
+                </li>
+                <li class="stock-nav-item" id="add-item-but">
+                    <a href="#" class="stock-nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM256 368C269.3 368 280 357.3 280 344V280H344C357.3 280 368 269.3 368 256C368 242.7 357.3 232 344 232H280V168C280 154.7 269.3 144 256 144C242.7 144 232 154.7 232 168V232H168C154.7 232 144 242.7 144 256C144 269.3 154.7 280 168 280H232V344C232 357.3 242.7 368 256 368z"/></svg>
+                        <span class="stock-link-text">Agregar</span>
+                    </a>
+                </li>
+                <li class="stock-nav-item" id="show-stock-but">
+                    <a href="#" class="stock-nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M160 48C160 21.49 181.5 0 208 0H256V80C256 88.84 263.2 96 272 96H304C312.8 96 320 88.84 320 80V0H368C394.5 0 416 21.49 416 48V176C416 202.5 394.5 224 368 224H208C181.5 224 160 202.5 160 176V48zM96 288V368C96 376.8 103.2 384 112 384H144C152.8 384 160 376.8 160 368V288H208C234.5 288 256 309.5 256 336V464C256 490.5 234.5 512 208 512H48C21.49 512 0 490.5 0 464V336C0 309.5 21.49 288 48 288H96zM416 288V368C416 376.8 423.2 384 432 384H464C472.8 384 480 376.8 480 368V288H528C554.5 288 576 309.5 576 336V464C576 490.5 554.5 512 528 512H368C341.5 512 320 490.5 320 464V336C320 309.5 341.5 288 368 288H416z"/></svg>
+                        <span class="stock-link-text">Stock</span>
+                    </a>
+                </li>
+                <li class="stock-nav-item" id="prep-order-but">
+                    <a href="#" class="stock-nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M464 96C508.2 96 544 131.8 544 176V192C561.7 192 576 206.3 576 224V288C576 305.7 561.7 320 544 320V336C544 380.2 508.2 416 464 416H80C35.82 416 0 380.2 0 336V176C0 131.8 35.82 96 80 96H464zM64 336C64 344.8 71.16 352 80 352H464C472.8 352 480 344.8 480 336V176C480 167.2 472.8 160 464 160H80C71.16 160 64 167.2 64 176V336z"/></svg>
+                        <span class="stock-link-text">Pedido</span>
+                    </a>
+                </li>
+                <li class="stock-nav-item" id="login-but">
+                    <a href="#" class="stock-nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M352 96h64c17.7 0 32 14.3 32 32V384c0 17.7-14.3 32-32 32H352c-17.7 0-32 14.3-32 32s14.3 32 32 32h64c53 0 96-43 96-96V128c0-53-43-96-96-96H352c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-7.5 177.4c4.8-4.5 7.5-10.8 7.5-17.4s-2.7-12.9-7.5-17.4l-144-136c-7-6.6-17.2-8.4-26-4.6s-14.5 12.5-14.5 22v72H32c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H160v72c0 9.6 5.7 18.2 14.5 22s19 2 26-4.6l144-136z"/></svg>
+                        <span class="stock-link-text">Login</span>
+                    </a>
+                </li>
+                <li class="stock-nav-item" id="logout-but">
+                    <a href="#" class="stock-nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96C43 32 0 75 0 128V384c0 53 43 96 96 96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H96c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32h64zM504.5 273.4c4.8-4.5 7.5-10.8 7.5-17.4s-2.7-12.9-7.5-17.4l-144-136c-7-6.6-17.2-8.4-26-4.6s-14.5 12.5-14.5 22v72H192c-17.7 0-32 14.3-32 32l0 64c0 17.7 14.3 32 32 32H320v72c0 9.6 5.7 18.2 14.5 22s19 2 26-4.6l144-136z"/></svg>
+                        <span class="stock-link-text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div id="container-div">
+            <div id="login">
+                <h2>Login</h2>
+                <form id="login-form">
+                    <table id="login-form-table">
+                        <tr>
+                            <td><label for="email">Email:</label></td>
+                            <td><input type="email" name="email" id="login-input-email" placeholder="Email" autocomplete="off"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="password">Contraseña:</label></td>
+                            <td><input type="password" name="password" id="login-input-password" placeholder="Contraseña"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><p id="login-error" invisible></p></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" value="Login" id="login-submit">
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="login-link-div">
+                        <a id="sign-up-link" class="login-link">Crear nuevo</a>
+                        <a id="reset-pass-link" class="login-link">Cambiar contraseña</a>
+                    </div>
+                </form>
+            </div>
+            <div id="sign-up">
+                <h2>Nuevo usuario</h2>
+                <form id="sign-up-form">
+                    <table id="sign-up-form-table">
+                        <tr>
+                            <td><label for="email">Email:</label></td>
+                            <td><input type="email" name="email" id="sign-up-input-email" placeholder="Email" autocomplete="off"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="password">Contraseña:</label></td>
+                            <td><input type="password" name="password" id="sign-up-input-password" placeholder="Contraseña"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="re-password">Confirmar:</label></td>
+                            <td><input type="password" name="re-password" id="sign-up-input-re-password" placeholder="Reingresar"></td>
+                        </tr>
+                        <tr >
+                            <td></td>
+                            <td><p id="sign-up-error"></p></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="Sign up" id="sign-up-submit"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div id="filter-nav">
+                <form id="filter-form" accept-charset="iso-8859-1">
+                    <div>
+                        <label for="category-select">Categorías:</label>
+                        <select id="category-select"></select>
+                    </div>
+                    <div>
+                        <label for="order-by">Ordenar por:</label>
+                        <select id="order-by">
+                            <option value="name">Nombre</option>
+                            <option value="brand">Marca</option>
+                            <option value="presentation">Presentación</option>
+                            <option value="description">Descripción</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="search-bar">Buscar:</label>
+                        <input type="text" id="search-bar">
+                    </div>
+                </form>
+            </div>
+            <div id="stock-div">
+                <h4 id="empty-stock-alert">No hay ítems aún, agrega algunos!</h4>
+                <table id="stock-table" class="table table-hover">
+                    <thead id="stock-table-head"></thead>
+                    <tbody id="stock-table-body"></tbody>
+                </table>
+            </div>
+            <div id="add-item-div"></div>
+            <div id="show-item-div"></div>
+            <div id="change-item-div"></div>
+            <div id="low-stock-div">
+                <h4 id="no-low-stock-alert">No hay ítems con bajo stock!</h4>
+                <table id="low-stock-table" class="table table-hover">
+                    <thead id="low-stock-table-head"></thead>
+                    <tbody id="low-stock-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
